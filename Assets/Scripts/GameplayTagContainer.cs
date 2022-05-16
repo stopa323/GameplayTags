@@ -1,11 +1,12 @@
-public class TagContainer {
-    public Tag[] GameplayTags { get; private set; }
 
-    public TagContainer(Tag[] children) {
+public class GameplayTagContainer {
+    public GameplayTag[] GameplayTags { get; private set; }
+
+    public GameplayTagContainer(GameplayTag[] children) {
         GameplayTags = children;
     }
 
-    public bool HasTag(Tag tagToCheck) {
+    public bool HasTag(GameplayTag tagToCheck) {
         foreach(var tag in GameplayTags) {
             if (tag.MatchesTag(tagToCheck)) return true;
         }
@@ -13,7 +14,7 @@ public class TagContainer {
         return false;
     }
     
-    public bool HasTagExact(Tag tagToCheck) {
+    public bool HasTagExact(GameplayTag tagToCheck) {
         foreach(var tag in GameplayTags) {
             if (tag.MatchesTagExact(tagToCheck)) return true;
         }

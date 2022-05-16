@@ -1,23 +1,23 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gameplay/Tag")]
-public class Tag : ScriptableObject {
+public class GameplayTag : ScriptableObject {
     [SerializeField]
     private string _tagName;
 
     [SerializeField]
-    private Tag _parent;
+    private GameplayTag _parent;
 
     [SerializeField]
-    private Tag[] _children;
+    private GameplayTag[] _children;
 
     public string GetTagName() => _tagName;
 
-    public Tag GetDirectParent() => _parent;
+    public GameplayTag GetDirectParent() => _parent;
 
-    public TagContainer GetChildrenContainer() => new TagContainer(_children);
+    public GameplayTagContainer GetChildrenContainer() => new GameplayTagContainer(_children);
 
-    public bool MatchesAny(TagContainer containerToCheck) {
+    public bool MatchesAny(GameplayTagContainer containerToCheck) {
         if (containerToCheck == null) return false;
 
         foreach(var tag in containerToCheck.GameplayTags) {
@@ -27,7 +27,7 @@ public class Tag : ScriptableObject {
         return false;
     }
 
-    public bool MatchesAnyExact(TagContainer containerToCheck) {
+    public bool MatchesAnyExact(GameplayTagContainer containerToCheck) {
         if (containerToCheck == null) return false;
 
         foreach(var tag in containerToCheck.GameplayTags) {
@@ -37,7 +37,7 @@ public class Tag : ScriptableObject {
         return false;
     }
 
-    public bool MatchesTag(Tag tagToCheck) { 
+    public bool MatchesTag(GameplayTag tagToCheck) { 
         if (tagToCheck == null) return false;
 
         if (_tagName == tagToCheck.GetTagName()) return true;
@@ -47,7 +47,7 @@ public class Tag : ScriptableObject {
         return _parent.MatchesTag(tagToCheck);
     }
 
-    public bool MatchesTagExact(Tag tagToCheck) {
+    public bool MatchesTagExact(GameplayTag tagToCheck) {
         return _tagName == tagToCheck.GetTagName();
     }
 
